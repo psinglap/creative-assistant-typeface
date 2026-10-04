@@ -1,0 +1,13 @@
+ID,Element,Parameter,What it is,Format / allowed values,"Example (Nike, illustrative)",Context type,Scope,Captured at,Refresh,Owner,Priority,Used for
+AU-01,Profile,segment_name,Segment label,text,Urban runners 18–34,Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P0,Generation constraint
+AU-02,Profile,age_range,Age band,"{min, max}",18–34,Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P0,Generation constraint
+AU-03,Profile,gender,Gender focus,enum any|female|male|other,any,Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P1,Generation constraint
+AU-04,Profile,interests,Interests and preferences,list,"Running, streetwear, fitness apps",Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P1,Generation constraint
+AU-05,Profile,spending_behavior,Spending pattern,text,"Premium, member-app users",Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P2,Generation constraint
+AU-06,Profile,life_stage,Household and life stage,text,Students and young professionals,Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P1,Generation constraint
+AU-07,Insight,motivations_pain_points,Job to be done and pain point,"list{motivation, pain_point}",Wants to train more consistently,Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P0,Generation constraint
+AU-08,Insight,objections,Objections and sensitivities,list,Sceptical of 'pro-only' messaging,Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing,P1,Generate + check
+AU-09,Funnel,funnel_stage,Awareness stage for this segment,enum unaware|considering|lapsed|loyal,Considering,Campaign · per brief,Global,Campaign brief,Per campaign,Marketing,P1,Generation constraint
+AU-10,Representation,representation_guidelines,Casting and diversity rules,text / checklist,"Mix of body types, ages and abilities",Brand · one-time,Global + local override,Brand onboarding,On change (versioned),Brand lead,P1,Generate + check
+AU-11,Targeting,platform_audience_ids,Linked platform audiences,"list{platform, audience_id}",Meta custom audience 2381…,Real-time · feed,Local (per market),Integration / feed,Continuous / daily,Media,P2,Context only
+AU-12,Personalisation,merge_tokens,Allowed personalisation tokens and their fallbacks,"list{token, source_field, fallback}","{FirstName} from CRM first_name, fallback 'Runner'",Campaign · per brief,Local (per market),Campaign brief,Per campaign,Marketing,P1,Pre-flight check

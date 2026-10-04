@@ -1,0 +1,122 @@
+{
+  "_doc": "SAMPLE / ILLUSTRATIVE. Proposed output shape of the creative assistance engine. Designed so that every finding is traceable to a named authority, because a marketer who is not a designer needs evidence they can defend, not an opinion.",
+  "_design_principle": "Three tiers. Tier 1 is objective and auto-fixable. Tier 2 is brand-relative and needs a human yes/no. Tier 3 is judgement and is expressed as precedent, never as a verdict.",
+
+  "batch_id": "batch_ny27_wave1",
+  "campaign_id": "camp_2027_new_year_reset",
+  "variant_count": 64,
+  "generated_at": "2026-11-18T09:12:00Z",
+
+  "batch_rollup": {
+    "ready_to_ship": 38,
+    "needs_attention": 21,
+    "blocked": 5,
+    "issue_clusters": [
+      {
+        "cluster_id": "cl_de_overflow",
+        "title": "German headline overflows the text box",
+        "affected_variant_count": 12,
+        "affected_variants": ["var_ny27_meta_9x16_de_a3", "var_ny27_meta_1x1_de_a3", "..."],
+        "root_cause": "Source headline is 34 characters in English, 44 in German. The 9:16 headline box was sized for English.",
+        "tier": 1,
+        "severity": "blocker",
+        "authority": { "type": "computed_layout", "detail": "rendered text exceeds box height by 62px" },
+        "fix_options": [
+          { "id": "fx_shorten", "label": "Use the approved shorter German headline", "value": "20g Protein, nichts Kuenstliches", "preserves": ["brand voice", "designer layout"], "confidence": 0.93 },
+          { "id": "fx_resize_box", "label": "Grow the text box 18%", "side_effect": "reduces clear space below logo, would trigger a second flag" },
+          { "id": "fx_reduce_type", "label": "Drop to 72px", "side_effect": "below brand minimum for story placements", "blocked_by_brand_rule": true }
+        ],
+        "recommended_fix": "fx_shorten",
+        "apply_scope": ["this variant", "all 12 in this cluster", "all German variants in campaign"]
+      },
+      {
+        "cluster_id": "cl_missing_disclaimer",
+        "title": "Required health-claim disclaimer is missing",
+        "affected_variant_count": 5,
+        "tier": 1,
+        "severity": "blocker",
+        "authority": { "type": "legal_rule", "rule_id": "dsc_us_dshea", "source": "Brand Kit > Claims and Legal > Mandatory disclaimers", "owner": "legal@halonutrition.com", "last_updated": "2026-10-15" },
+        "why_it_matters": "The headline uses an approved structure-function claim. In the US that claim carries a mandatory disclaimer inside the creative, not on the landing page.",
+        "fix_options": [{ "id": "fx_insert_disclaimer", "label": "Insert disclaimer at 11px in the lower safe area", "auto_appliable": true }],
+        "cost_of_missing": "Meta disapproval or post-launch legal takedown. Historically 3 to 5 lost flight days."
+      },
+      {
+        "cluster_id": "cl_cta_contrast",
+        "title": "CTA text fails contrast on the citrus accent",
+        "affected_variant_count": 9,
+        "tier": 1,
+        "severity": "warning",
+        "authority": { "type": "brand_rule_and_wcag", "rule": "halo-cream on halo-citrus is marked prohibited in the Brand Kit pairing rules", "measured": 2.9, "required": 4.5 },
+        "fix_options": [{ "id": "fx_swap_fg", "label": "Switch CTA text to halo-ink", "measured_after": 7.1, "auto_appliable": true }]
+      },
+      {
+        "cluster_id": "cl_logo_clearspace",
+        "title": "Logo clear space is 0.6x, brand requires 1.0x",
+        "affected_variant_count": 14,
+        "tier": 2,
+        "severity": "warning",
+        "authority": { "type": "brand_guideline", "citation": "Halo brand book v6.2, p.14, 'Logo clear space'", "deep_link": "brandkit://halo/logo/clearspace" },
+        "note": "Designer locked this element. Overriding requires a reason, which is recorded."
+      },
+      {
+        "cluster_id": "cl_jp_font",
+        "title": "Japanese variants have no CJK glyph coverage",
+        "affected_variant_count": 4,
+        "tier": 1,
+        "severity": "blocker",
+        "authority": { "type": "computed_font_coverage", "detail": "Halo Grotesk lacks glyphs for 31 of 44 characters. Renderer will substitute silently." },
+        "fix_options": [{ "id": "fx_noto", "label": "Switch to Noto Sans JP, the Brand Kit approved CJK face", "auto_appliable": true }]
+      },
+      {
+        "cluster_id": "cl_offbrand_tone",
+        "title": "Three headlines use language on the never-say list",
+        "affected_variant_count": 3,
+        "tier": 2,
+        "severity": "blocker",
+        "authority": { "type": "brand_voice_rule", "matched_terms": ["guilt-free", "shred"], "source": "Brand Kit > Voice > We never say" },
+        "note": "These came from the AI copy generation step, not from the designer's seed."
+      },
+      {
+        "cluster_id": "cl_precedent_weak_hook",
+        "title": "Six variants use a hook that underperformed with this audience",
+        "affected_variant_count": 6,
+        "tier": 3,
+        "severity": "advisory",
+        "authority": { "type": "precedent", "evidence_ref": "camp_2025_q3_v2", "detail": "'Unlock your best self' ran to this segment in Q3 2025 and delivered 22% below control CTR." },
+        "framing": "This is not a defect. It is a prior. Shown as evidence, decision stays with the marketer.",
+        "fix_options": [{ "id": "fx_swap_hook", "label": "Try '30 seconds, not 30 minutes' (+31% CTR, same audience, BTS 2025)" }]
+      }
+    ]
+  },
+
+  "per_variant_example": {
+    "variant_id": "var_ny27_meta_9x16_de_a3",
+    "readiness": "blocked",
+    "findings": [
+      { "cluster_id": "cl_de_overflow", "element_id": "el_headline", "tier": 1, "severity": "blocker" },
+      { "cluster_id": "cl_logo_clearspace", "element_id": "el_logo", "tier": 2, "severity": "warning" },
+      { "cluster_id": "cl_cta_contrast", "element_id": "el_cta", "tier": 1, "severity": "warning" }
+    ],
+    "passed_silently": [
+      "channel aspect ratio and file size",
+      "safe zone occupancy",
+      "approved product render in use",
+      "focal point retained after crop",
+      "no prohibited claim language"
+    ],
+    "_design_note": "What passed is shown, collapsed. A marketer without design confidence needs to see what was checked, not only what failed. Silence is not reassurance."
+  },
+
+  "ship_report": {
+    "_purpose": "The artefact that replaces designer sign-off socially. Attachable to the launch ticket.",
+    "generated_for": "marketer:p.rao",
+    "checks_run": 47,
+    "checks_passed": 44,
+    "overrides": [
+      { "cluster_id": "cl_logo_clearspace", "decision": "accepted as-is", "reason_given": "Reels UI overlays the top area, tighter crop approved verbally by brand team 2026-11-17", "decided_by": "marketer:p.rao", "timestamp": "2026-11-18T10:02:00Z" }
+    ],
+    "rule_versions": { "brand_kit": "6.2", "channel_specs": "2026-11-01", "legal_rules": "2026-10-15" },
+    "designer_escalations": 1,
+    "time_to_ship_ready_minutes": 34
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "_doc": "SAMPLE / ILLUSTRATIVE. Proposed shape of the audience and market nodes in the Arc Graph. Purpose: confirm which of this Typeface holds, which comes from the customer CDP, and which is absent.",
+  "_confirm_with_typeface": [
+    "Is audience held as a persona document, or as structured segments synced from a CDP / ad platform?",
+    "Is there a market/locale node at all, or is localisation treated purely as translation?",
+    "Does the graph store 'what has worked for this audience before', or only 'who this audience is'?"
+  ],
+
+  "audiences": [
+    {
+      "audience_id": "aud_busy_parent_35_49",
+      "label": "Time-poor parents, 35-49",
+      "source": "customer CDP segment sync (Segment -> Typeface)",
+      "size_estimate": 2400000,
+      "demographics": { "age": "35-49", "hh_income": "$75k-150k", "geo": ["US suburban"], "gender_skew": "62% female" },
+      "context": {
+        "job_to_be_done": "get protein into a chaotic morning without another decision",
+        "purchase_trigger": ["back to school", "new year", "post-illness"],
+        "objection": ["price per serving vs. store brand", "will my kid actually drink it"],
+        "channel_habit": ["Instagram Reels evening", "Amazon search mid-morning", "Walmart app weekend"]
+      },
+      "messaging_guidance": {
+        "lead_with": "speed and simplicity, not performance or fitness",
+        "avoid": ["gym imagery", "macro tracking language", "athlete endorsement"],
+        "proven_hooks": [
+          { "hook": "30 seconds, not 30 minutes", "evidence_ref": "camp_2025_bts_v3", "lift_vs_control": "+31% CTR" },
+          { "hook": "20g protein, nothing weird", "evidence_ref": "camp_2026_ny_v7", "lift_vs_control": "+18% CVR" }
+        ],
+        "failed_hooks": [
+          { "hook": "Unlock your best self", "evidence_ref": "camp_2025_q3_v2", "result": "-22% CTR vs control", "hypothesis": "aspirational framing reads as fitness brand" }
+        ]
+      }
+    },
+    {
+      "audience_id": "aud_value_seeker_retail",
+      "label": "Retail value seeker",
+      "messaging_guidance": {
+        "lead_with": "cost per serving",
+        "constraint": "price claims require retailer approval and expire at promo end"
+      }
+    }
+  ],
+
+  "markets": [
+    {
+      "market_id": "us",
+      "locale": "en-US",
+      "text_expansion_factor_vs_en": 1.0,
+      "script": "latin",
+      "reading_direction": "ltr",
+      "regulatory_profile": "FDA/FTC, DSHEA disclaimer required on structure-function claims",
+      "cultural_notes": [],
+      "currency_format": "$0.00",
+      "date_format": "MM/DD/YYYY",
+      "measurement": "imperial"
+    },
+    {
+      "market_id": "de",
+      "locale": "de-DE",
+      "text_expansion_factor_vs_en": 1.35,
+      "_note": "German averages roughly 10-35% longer than English. This is the single most common cause of layout breakage on resized variants. Confirm expansion factors with Typeface localisation data.",
+      "script": "latin",
+      "reading_direction": "ltr",
+      "regulatory_profile": "EU health claims register, stricter than US",
+      "cultural_notes": [
+        "comparative advertising heavily restricted",
+        "'Du' vs 'Sie' register decision must be brand-level and consistent"
+      ],
+      "currency_format": "0,00 EUR",
+      "date_format": "DD.MM.YYYY",
+      "measurement": "metric",
+      "approved_translations": { "Shop now": "Jetzt kaufen", "Find in store": "Im Handel finden" }
+    },
+    {
+      "market_id": "jp",
+      "locale": "ja-JP",
+      "text_expansion_factor_vs_en": 0.6,
+      "script": "cjk",
+      "reading_direction": "ltr",
+      "font_substitution_required": true,
+      "_note": "Halo Grotesk has no CJK glyph coverage. Any JP variant using it will tofu or silently substitute. This is a hard blocker class that brand kits rarely encode.",
+      "approved_cjk_font": "Noto Sans JP",
+      "cultural_notes": ["direct 'you' address reads as aggressive", "white space is a quality signal, do not fill"]
+    },
+    {
+      "market_id": "ae",
+      "locale": "ar-AE",
+      "script": "arabic",
+      "reading_direction": "rtl",
+      "_note": "RTL requires layout mirroring, not just translation. Logo placement, CTA position and image gaze direction all flip.",
+      "cultural_notes": ["no depiction of alcohol adjacency", "modest dress in lifestyle imagery"]
+    }
+  ],
+
+  "seasonality": [
+    { "window": "2026-12-26..2027-01-31", "label": "New Year reset", "demand_index": 178, "creative_guidance": "resolution framing permitted, avoid weight-loss framing entirely", "historical_best_format": "9:16 video with on-screen text in first 1.5s" },
+    { "window": "2026-07-15..2026-09-05", "label": "Back to school", "demand_index": 134 }
+  ]
+}

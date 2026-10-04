@@ -1,0 +1,135 @@
+{
+  "_doc": "SAMPLE / ILLUSTRATIVE, but the numbers are real and sourced. Proposed shape of a versioned, machine-readable channel rule library. The question for Typeface is whether Typeface owns and maintains this, or whether the marketer supplies specs per campaign. Owning it is the defensible asset.",
+  "_confirm_with_typeface": [
+    "Does Typeface hold channel specs as structured rules today, or as template size presets only?",
+    "Who updates a rule when Meta or Amazon changes a spec, and how fast?",
+    "Are retailer policies (Amazon, Walmart, Target, Instacart) in scope, or only social platform specs?",
+    "A direct competitor (Cape.io) is already selling 'Zero Platform Rejections' on the back of a 'Global Spec Database'. Is this seen internally as a build, a buy, or a partner?"
+  ],
+  "_note_on_severity": "Three tiers, never summed. blocker = objective and externally citable. warning = brand-relative or soft-delivery. advisory = judgement or precedent.",
+
+  "library_version": "2026-11-01",
+  "maintained_by": "typeface_platform",
+
+  "specs": [
+    {
+      "spec_id": "meta_ig_reels",
+      "channel": "meta",
+      "placement": "instagram_reels",
+      "source": "https://www.facebook.com/business/ads-guide/update/image/instagram-reels",
+      "source_status": "OFFICIAL, fetched 2026-09-23",
+      "rules": [
+        { "rule_id": "ratio", "severity": "blocker", "check": "aspect_ratio == 9:16", "tolerance_pct": 1, "autofix": "recrop_preserving_focal_point" },
+        { "rule_id": "resolution", "severity": "blocker", "check": "width_px >= 500", "recommended": "1440x2560" },
+        { "rule_id": "safe_top", "severity": "blocker", "check": "no_critical_element_in_top_pct(14)", "px_on_1080x1920": 269, "reason": "profile row and UI chrome" },
+        { "rule_id": "safe_bottom", "severity": "blocker", "check": "no_critical_element_in_bottom_pct(35)", "px_on_1080x1920": 672, "reason": "CTA button, caption, like/comment/share rail", "_note": "Meta's own pages disagree here. The FB Stories VIDEO page still says bottom 20% (340px); FB Stories image, IG Stories and IG Reels all say 35%. Encode 35% as current and surface 20% as a legacy note. A pre-flight library has to take a position on vendor inconsistency and show its working." },
+        { "rule_id": "safe_sides", "severity": "blocker", "check": "no_critical_element_in_side_pct(6)", "px_on_1080x1920": 65 },
+        { "rule_id": "primary_text", "severity": "warning", "check": "primary_text.length <= 44", "_note": "Truncation is line-based, not character-based. It varies by device width, accessibility font size, language, emoji and manual breaks. Render and measure, do not count characters." },
+        { "rule_id": "file_size", "severity": "blocker", "check": "bytes <= 30MB", "formats": ["jpg", "png"] },
+        { "rule_id": "duration", "severity": "blocker", "check": "0s <= duration <= 15min" },
+        { "rule_id": "text_density", "severity": "warning", "check": "text_pct_of_canvas <= 20", "_note": "NOT a live official rule. Meta removed auction and delivery penalties for text-heavy images in September 2020 and retired the Text Overlay Tool. Text density is now a soft input to estimated action rate, not an eligibility gate. Ship this as a warning and never cite it as policy." },
+        { "rule_id": "captions", "severity": "warning", "check": "captions_present == true", "authority": "meta_recommendation_plus_brand_accessibility_policy" }
+      ],
+      "policy_rules": [
+        { "rule_id": "personal_attributes", "severity": "blocker", "check": "no_second_person_health_or_identity_assertion", "example_violation": "Struggling with low energy?" },
+        { "rule_id": "before_after", "severity": "blocker", "check": "no_body_comparison_imagery" }
+      ]
+    },
+    {
+      "spec_id": "meta_fb_right_column",
+      "channel": "meta",
+      "placement": "facebook_right_column",
+      "rules": [
+        { "rule_id": "no_overlay_text", "severity": "blocker", "check": "text_overlay_present == false", "authority": "Meta states text-on-image is not recommended at this render size", "_note": "A clean example of a placement-specific rule that a marketer resizing into a new slot would never think of." }
+      ]
+    },
+    {
+      "spec_id": "accessibility_wcag22",
+      "channel": "*",
+      "source": "https://www.w3.org/WAI/WCAG22/",
+      "source_status": "OFFICIAL",
+      "rules": [
+        { "rule_id": "contrast_normal", "severity": "blocker", "check": "contrast_ratio >= 4.5", "applies_to": "text < 18pt regular or < 14pt bold" },
+        { "rule_id": "contrast_large", "severity": "blocker", "check": "contrast_ratio >= 3.0", "applies_to": "text >= 18pt (~24px) regular or >= 14pt (~18.5px) bold" },
+        { "rule_id": "no_rounding", "severity": "implementation_note", "check": "do_not_round", "authority": "W3C SC 1.4.11: 'the computed values should not be rounded (e.g. 2.999:1 would not meet the 3:1 threshold)'" },
+        { "rule_id": "logo_exempt", "severity": "implementation_note", "check": "skip_contrast_on_logo_regions", "authority": "W3C: 'Text that is part of a logo or brand name has no contrast requirement'", "_note": "CRITICAL for false positives. Any pre-flight tool must region-tag logos and decorative type before running contrast, or it will flag every wordmark on the platform. Precision over recall means getting this right before shipping." },
+        { "rule_id": "line_height", "severity": "warning", "check": "line_height >= 1.5 * font_size" },
+        { "rule_id": "flash", "severity": "blocker", "check": "flashes_per_second <= 3" }
+      ],
+      "_contrast_over_photography": "No single official procedure exists. Proposed method: sample the region directly behind each glyph plus a small bleed, compute contrast against BOTH the lightest and darkest pixels in that footprint, fail if either extreme fails, and where variance is high require a scrim and re-measure against the flattened composite. This is a practitioner implementation of SC 1.4.3, not a W3C-published method, and should be labelled as such in the UI."
+    }
+  ],
+
+  "localization_rules": {
+    "_source": "https://www.w3.org/International/articles/article-text-size/ [OFFICIAL], per-language figures [PRACTITIONER, directional]",
+    "_the_key_insight": "W3C, verbatim: 'the smaller the source message, the higher the likely translation length.' For ad creative this is THE dominant failure mode, because headlines and CTAs are exactly the short strings that expand two to three times.",
+    "expansion_by_source_length": {
+      "_unit": "total resulting length, not added length",
+      "up_to_10_chars": "200-300%",
+      "11_to_20": "180-200%",
+      "21_to_30": "160-180%",
+      "31_to_50": "140-160%",
+      "over_70": "130%"
+    },
+    "worked_example_the_word_views": {
+      "ko": 0.8, "en": 1.0, "zh": 1.2, "pt": 2.6, "fr": 2.6, "de": 2.8, "it": 3.0
+    },
+    "per_language": {
+      "de": "+10% to +35%, compounds push short strings toward +100%",
+      "fi": "+20% to +60%, among the most expansive",
+      "es": "+15% to +30%",
+      "th": "+10% to +15%, but no inter-word spaces so line-wrapping is the real risk",
+      "ar": "-10% to -25% characters, but needs +10-20% larger point size and +20-30% more leading",
+      "ja": "-10% to -55% characters, needs taller line-height",
+      "zh": "roughly -50% characters"
+    },
+    "_the_cjk_arabic_trap": "Character-count contraction is not space savings. Arabic needs a larger point size and more leading because of connected cursive forms, tashkeel diacritics and a deeper ascender/descender range. A layout that shrinks to fit the character count will be illegible. This is the kind of rule a marketer cannot possibly hold in their head and a brand kit should hold for them.",
+    "rtl_rules": {
+      "mirrors": ["text alignment", "layout order", "directional icons (back/forward, next)", "progress bars", "chevrons"],
+      "does_not_mirror": ["brand logos and lockups, reposition instead of flipping", "digit sequences", "fixed-orientation object icons (clocks, cameras, play/pause)"],
+      "ad_specific_breakages": [
+        "Logo plus CTA pairing must flip order while the logo mark itself stays unmirrored",
+        "'Shop Now >' becomes '< تسوق الآن'",
+        "Mixed LTR brand names inside Arabic strings reorder incorrectly without direction isolation. W3C fix: wrap in dir='ltr' and append U+200E",
+        "Arabic has its own comma (،) and question mark (؟). Reusing LTR glyphs is a visible error",
+        "TikTok ships a SEPARATE RTL safe-zone template, so safe-zone geometry is direction-dependent on at least one platform"
+      ]
+    },
+    "locale_format_traps": [
+      "Currency position: € -1.234,56 in the Netherlands vs -1 234,56 € in France. Same currency, opposite symbol placement AND separators.",
+      "Switzerland uses comma generally but period for currency.",
+      "India groups after the first 3 digits then every 2: 10,00,00,000",
+      "Spanish in the US uses 12-hour despite Spain preferring 24-hour.",
+      "Family name first in Japan, China, Korea and Hungary, which breaks '{FirstName} {LastName}' personalisation tokens."
+    ]
+  },
+
+  "_rejection_reality": {
+    "_purpose": "The numbers that justify the product. Everything here is official or explicitly labelled as modelled.",
+    "google_2024_official": {
+      "source": "https://services.google.com/fh/files/misc/ads_safety_report_2024.pdf",
+      "ads_removed": "5.1 billion",
+      "ads_restricted": "9.1 billion",
+      "accounts_suspended": "39.2 million",
+      "_honest_read": "Do NOT pitch against the headline 5.1B. The highest-volume categories (abusing the ad network 793M, trademark 503M, personalized ads 491M) are not creative-design problems and a pre-flight tool cannot touch them. Position against the four it CAN address: Financial services (193.7M blocked + 268.3M restricted), Misrepresentation (146.9M), Healthcare and medicines (104.8M), Alcohol (10.9M + 34.2M)."
+    },
+    "meta_official": {
+      "enforcement_precision_h1_2026": "~91% Facebook, ~92% Instagram",
+      "_implication": "An 8-9% error rate on enforcement decisions. This is the most defensible available number for 'ads get wrongly rejected'. Meta publishes NO ad-specific rejection statistics; the Community Standards report covers organic content only.",
+      "learning_phase": "50 optimization events per ad set per week, reset by any significant edit"
+    },
+    "the_real_cost_mechanism": {
+      "_this_is_the_ROI_argument": "A mid-flight creative rejection does not just cost the review window. On Meta, editing the creative to fix it triggers a NEW review AND counts as a significant edit that RESETS the learning phase. So the cost is review time plus a full re-accumulation of roughly 50 optimization events, during which Meta states performance 'remains unstable and isn't predictive of future results'.",
+      "modelled_not_measured": "For a 14-day flight, a single mid-flight creative rejection can plausibly compromise a third to a half of the flight. This is a modelled shape, not a published figure, and must be presented that way.",
+      "the_leverage": "Ads scheduled for a future start enter review immediately but do not deliver until the start time. Catching a violation BEFORE submission converts a mid-flight outage into zero cost. Catching it after launch costs review plus learning reset. That asymmetry is the entire business case."
+    },
+    "_honest_negative_finding": "No published or credibly sourced number exists for: percentage of campaigns that hit a disapproval, average days lost per rejection, cost of a rejected flight day, first-submission disapproval rates, or appeal overturn rates. Every candidate source either 404'd, returned 403, or contained only qualitative guidance. If Typeface has any internal rejection data, it is more valuable than anything published."
+  },
+
+  "_gaps": [
+    "Walmart Connect creative policy: no prohibited-claims document retrievable at all. The entire Walmart module is currently unsourced.",
+    "Amazon official SLA and the policy page itself: advertising.amazon.com/resources/ad-policy/en returns only a tracking pixel.",
+    "TikTok numeric safe zones: TikTok's official position is that there are no published numbers, only downloadable template files. Ingest the templates.",
+    "FDA DTC final rule on the major statement: federalregister.gov redirects to an unblock gateway. Highest-value unfilled regulatory item."
+  ]
+}

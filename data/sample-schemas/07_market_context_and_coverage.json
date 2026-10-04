@@ -1,0 +1,160 @@
+{
+  "_doc": "SAMPLE / ILLUSTRATIVE. Proposed MARKET node plus a coverage model. This is the object that does not appear to exist in Typeface today, and it is the one the new-market journey depends on.",
+
+  "_why_this_is_a_separate_node": "Market and audience are orthogonal and must not be collapsed. 'Time-poor parents 35-49' exists in Germany, Japan and the UAE and means something different in each. If cultural context is attached to the persona, you get personas multiplied by markets, nothing is reusable, and a correction in one place does not propagate. Market is its own node, joined to audience at generation time. The cultural claim belongs to the market; the behavioural claim belongs to the audience; the interesting content is in the join.",
+
+  "_what_exists_in_typeface_today": {
+    "audience_schema_actual": "name, ageRangeMin, ageRangeMax, gender (Male/Female/Neutral), preferences[], spendingBehavior (enum). Docs sample: 'Adults in Chicago'.",
+    "market_node": "NOT FOUND. No locale, script, regulatory or cultural field observed anywhere in the API reference.",
+    "guideline_scoping_observed": ["global", "ads / Social Ads"],
+    "_implication": "A rule cannot currently be scoped to a market. And the Localization Agent 'translates ad copy and creatives for global markets while maintaining brand safety', which is translation, not transcreation. Translation without a market node is the exact failure mode the new-market journey is about.",
+    "_confirm": "Ask whether a market or locale object exists anywhere that is not visible in the public API reference."
+  },
+
+  "_nine_dimensions": "Linguistic, Typographic, Regulatory, Formatting, Cultural, Register, Commercial, Competitive, Seasonal. Coverage is scored per dimension, not per market, because a market can be well understood legally and completely unknown culturally.",
+
+  "markets": [
+    {
+      "market_id": "jp",
+      "label": "Japan",
+      "locale": "ja-JP",
+      "status": "new_market_first_launch",
+      "_narrative": "This is the hard case. The marketer has never launched here, has no local colleague, and cannot evaluate the output at all.",
+
+      "linguistic": {
+        "script": "cjk",
+        "reading_direction": "ltr",
+        "text_expansion_factor_vs_en": 0.6,
+        "_expansion_trap": "Character count contracts by 10 to 55 percent. That is NOT space savings. CJK needs taller line-height. A layout that shrinks to fit the character count will be illegible.",
+        "line_breaking": "no inter-word spaces, kinsoku shori rules govern where a line may break",
+        "coverage": "present", "authored_by": "typeface_platform", "confidence": "high"
+      },
+
+      "typographic": {
+        "brand_font_glyph_coverage": { "font": "Halo Grotesk", "covered": 13, "required": 44, "verdict": "fails" },
+        "_this_is_a_blocker_not_a_warning": "The renderer will substitute silently or render tofu. Nobody sees it until it ships. This is the single cleanest example of a check a marketer cannot possibly perform and a machine performs perfectly.",
+        "approved_substitute": "Noto Sans JP",
+        "min_font_size_px_override": { "mobile_feed": 28, "_reason": "CJK glyphs need more height than Latin at equivalent legibility" },
+        "coverage": "present", "authored_by": "typeface_platform", "confidence": "high"
+      },
+
+      "regulatory": {
+        "health_claims_regime": "Foods with Function Claims (FFC) notification regime",
+        "prohibited_claim_patterns": ["disease prevention", "medical efficacy"],
+        "mandatory_disclaimers": [],
+        "coverage": "partial",
+        "authored_by": null,
+        "confidence": "low",
+        "_gap_statement": "No market-specific claim allowlist exists for JP. The US DSHEA disclaimer in the Brand Kit does not apply and its presence would be wrong, not merely useless. This needs a named legal owner before launch."
+      },
+
+      "formatting": {
+        "date_format": "YYYY年MM月DD日",
+        "currency_format": "¥0",
+        "measurement": "metric",
+        "name_order": "family_first",
+        "_token_trap": "'{FirstName} {LastName}' personalisation tokens produce a reversed name in JP, KR, CN and HU. A silent, invisible, embarrassing defect.",
+        "coverage": "present", "authored_by": "typeface_platform", "confidence": "high"
+      },
+
+      "cultural": {
+        "coverage": "absent",
+        "authored_by": null,
+        "confidence": "none",
+        "_gap_statement": "Arc Graph holds nothing for this dimension. Known general risks that a checker should NOT pretend to have adjudicated: white as a mourning colour, the number 4, direct second-person address reading as aggressive, negative space as a quality signal rather than wasted room, gesture meanings. These are flagged as UNVERIFIED FOR THIS BRAND, not as findings.",
+        "_design_rule": "The agent must say it does not know. Silence here is the most dangerous output the product can produce."
+      },
+
+      "register": {
+        "formality_default": null,
+        "coverage": "absent",
+        "confidence": "none",
+        "_gap_statement": "Keigo level is a brand-level decision with no default. It cannot be inferred from the English source, and getting it wrong is the fastest way to read as a foreign brand."
+      },
+
+      "commercial": { "coverage": "absent", "confidence": "none" },
+      "competitive": {
+        "coverage": "absent",
+        "confidence": "none",
+        "_gap_statement": "No local private-label or market-leader palette data. This is how a competitor's product ends up in your AI-generated background. It has already happened publicly: a Walmart Connect creative was rejected for a rival private-label pack in an AI-generated kitchen, and a Ram t-shirt shipped with a Toyota Tacoma on it."
+      },
+
+      "seasonal": {
+        "coverage": "absent",
+        "confidence": "none",
+        "_gap_statement": "CRITICAL AND EASY TO MISS. The campaign is 'New Year Reset', timed to a 26 Dec to 31 Jan window. That window is a Western construct. Shōgatsu is culturally significant in Japan but the resolution-and-reset framing is not the same idea, and in markets on a lunar calendar the new year is not in January at all. The seed concept may simply not be adaptable to this market, which is a strategy finding, not a creative defect. The product should surface it and stop, not translate its way through it."
+      },
+
+      "review": {
+        "named_local_reviewer": null,
+        "_gap_statement": "No named human owns cultural sign-off for JP. This is the single most actionable gap. The product's job here is not to judge, it is to route."
+      },
+
+      "readiness": {
+        "dimensions_present": 3,
+        "dimensions_total": 9,
+        "coverage_score": 0.33,
+        "verdict": "insufficient_context_for_autonomous_check",
+        "agent_autonomy": "advisory_only",
+        "_see": "graduated_autonomy below"
+      }
+    },
+
+    {
+      "market_id": "de",
+      "label": "Germany",
+      "locale": "de-DE",
+      "status": "established",
+      "linguistic": { "script": "latin", "reading_direction": "ltr", "text_expansion_factor_vs_en": 1.35, "_note": "Compounds push SHORT strings toward +100 percent. Headlines and CTAs are exactly the short strings. W3C: 'the smaller the source message, the higher the likely translation length.'", "coverage": "present", "confidence": "high" },
+      "typographic": { "brand_font_glyph_coverage": { "verdict": "passes" }, "coverage": "present", "confidence": "high" },
+      "regulatory": { "health_claims_regime": "EU Register Art.13.1 allowlist only", "prohibited_additional": ["immune", "energy boost"], "comparative_advertising": "heavily restricted", "coverage": "present", "authored_by": "legal@halonutrition.com", "last_reviewed": "2026-08-14", "confidence": "high" },
+      "formatting": { "date_format": "DD.MM.YYYY", "currency_format": "0,00 EUR", "coverage": "present", "confidence": "high" },
+      "cultural": { "coverage": "present", "authored_by": "de_market_lead@halonutrition.com", "last_reviewed": "2026-05-02", "confidence": "medium", "_staleness_note": "16 months old. Flag as ageing, do not treat as absent." },
+      "register": { "formality_default": "Sie", "coverage": "present", "authored_by": "de_market_lead@halonutrition.com", "confidence": "high", "_note": "Du versus Sie must be brand-level and consistent. A variant that mixes them within one campaign is a defect no English-speaking reviewer will catch." },
+      "commercial": { "coverage": "present", "confidence": "medium" },
+      "competitive": { "coverage": "partial", "confidence": "low" },
+      "seasonal": { "coverage": "present", "confidence": "high" },
+      "review": { "named_local_reviewer": "de_market_lead@halonutrition.com", "typical_turnaround_hours": 18 },
+      "readiness": { "dimensions_present": 8, "dimensions_total": 9, "coverage_score": 0.89, "verdict": "sufficient", "agent_autonomy": "check_and_propose_fixes" }
+    }
+  ],
+
+  "graduated_autonomy": {
+    "_the_idea": "The agent's permission to act is a function of how much context it holds. It earns autonomy per market and per dimension. This is the honest answer to 'can AI judge cultural appropriateness'. It cannot. But it can know that it cannot, and say so, which is more useful than a confident guess and more trustworthy than silence.",
+    "levels": [
+      { "coverage": ">= 0.80", "autonomy": "check_and_autofix", "behaviour": "Objective findings are fixed with a visible diff. Brand findings are proposed with an adjustable fix. Precedent is shown." },
+      { "coverage": "0.50 to 0.79", "autonomy": "check_and_propose", "behaviour": "Nothing is auto-applied. Every finding is proposed. Uncovered dimensions are named explicitly in the Ship Report." },
+      { "coverage": "< 0.50", "autonomy": "advisory_only", "behaviour": "Run every objective check that does not depend on missing context (glyph coverage, expansion, format tokens, RTL). Declare every dimension it cannot assess. Require a named local reviewer before the ship gate will clear. Do NOT produce a readiness verdict." }
+    ],
+    "_the_hard_rule": "Below 0.50 coverage the product must refuse to say 'ready to ship'. It may say 'these 6 things are objectively wrong and these 4 dimensions are unassessed'. A green tick on a market the system knows nothing about is the worst possible output, because it converts the marketer's uncertainty into false confidence and transfers the blame to her."
+  },
+
+  "precedence": {
+    "_why_this_is_needed": "Three authorities can conflict on one canvas and someone has to have decided the order in advance. Nobody asks this question until the first production conflict.",
+    "order": [
+      { "rank": 1, "authority": "market_legal", "can_block": true, "can_be_overridden_by": ["legal owner only"] },
+      { "rank": 2, "authority": "channel_spec_hard", "can_block": true, "can_be_overridden_by": ["nobody, the platform will reject it"] },
+      { "rank": 3, "authority": "accessibility_wcag_aa", "can_block": true, "can_be_overridden_by": ["brand accessibility policy owner"] },
+      { "rank": 4, "authority": "brand_mandatory", "can_block": true, "can_be_overridden_by": ["brand owner", "marketer with recorded reason"] },
+      { "rank": 5, "authority": "designer_lock", "can_block": false, "can_be_overridden_by": ["marketer with recorded reason, which generates an escalation signal"] },
+      { "rank": 6, "authority": "brand_preference", "can_block": false },
+      { "rank": 7, "authority": "precedent", "can_block": false, "_note": "Never blocks. Evidence only." }
+    ],
+    "worked_conflict_example": {
+      "variant": "var_ny27_meta_9x16_de_a3",
+      "conflict": "The DE market legal rule requires a mandatory health footer. The footer occupies the lower band. Meta's IG Reels spec reserves the bottom 35 percent for UI chrome. The designer locked the logo at top-left with 1x clear space. All three cannot hold on a 1080x1920 canvas.",
+      "resolution_by_precedence": "Market legal wins (rank 1). Channel safe zone wins (rank 2). Therefore the designer lock at rank 5 yields: the logo moves. The marketer is told which rule forced it and why, the designer is notified once because their lock was overridden, and the override reason is auto-populated rather than typed.",
+      "_why_this_matters": "Without a precedence order the agent either picks arbitrarily, or asks the marketer to arbitrate between German food law and Meta's spec. She cannot do that, and asking her to is the failure the brief describes."
+    }
+  },
+
+  "temporal_validity": {
+    "_why": "Nothing in a brand kit is true forever, and a checker that enforces an expired rule is worse than no checker.",
+    "examples": [
+      { "object": "clm_immune_support", "type": "approved_claim", "expires": "2027-01-31", "behaviour_on_expiry": "block, do not warn" },
+      { "object": "promo_price_claim", "type": "price_claim", "expires": "promo_end_date", "behaviour_on_expiry": "block" },
+      { "object": "de.cultural", "type": "market_context", "last_reviewed": "2026-05-02", "stale_after_months": 12, "behaviour_on_staleness": "downgrade confidence, surface age in the Ship Report, do not block" },
+      { "object": "meta_ig_reels_spec", "type": "channel_spec", "effective_from": "2026-11-01", "behaviour": "re-check every open batch on spec version change" }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+ID,Element,Parameter,What it is,Format / allowed values,"Example (Nike, illustrative)",Context type,Scope,Captured at,Refresh,Owner,Priority,Used for
+CB-01,Basics,campaign_name_id,Campaign name and ID,text + id,Run Your City · RYC-27 (hypothetical),Campaign · per brief,Global,Campaign brief,Per campaign,Campaign manager,P0,Context only
+CB-02,Goal,objective,Campaign objective,enum awareness|consideration|conversion|retention,Conversion,Campaign · per brief,Global,Campaign brief,Per campaign,Campaign manager,P0,Generation constraint
+CB-03,Goal,primary_kpi_target,Primary KPI with target,"{kpi, target, currency}",CPA ≤ €15,Campaign · per brief,Global + local override,Campaign brief,Per campaign,Campaign manager,P1,Ranking / selection
+CB-04,Timing,flight_dates,"Start, end and key dates","{start, end, key_dates[]}",Flight starts Thursday,Campaign · per brief,Global + local override,Campaign brief,Per campaign,Campaign manager,P0,Pre-flight check
+CB-05,Scope,markets,Markets in scope,list[market_locale],"de-DE, ja-JP (localised from the en-US global master)",Campaign · per brief,Global,Campaign brief,Per campaign,Campaign manager,P0,Generation constraint
+CB-06,Scope,placements,Channels and placements,list[channel.placement],"meta.feed, meta.reels, tiktok.feed, youtube.shorts",Campaign · per brief,Global,Campaign brief,Per campaign,Campaign manager,P0,Generation constraint
+CB-07,Scope,target_segments,Audience segments,list[segment_name],Urban runners 18–34,Campaign · per brief,Global,Campaign brief,Per campaign,Campaign manager,P0,Generation constraint
+CB-08,Message,key_message,Single-minded proposition,text ≤ 120 chars,Your city is your track,Campaign · per brief,Global + local override,Campaign brief,Per campaign,Campaign manager,P0,Generation constraint
+CB-09,Message,supporting_messages,"Up to 3 reasons to believe, from pillars",list ≤ 3,Cushioning; lightweight upper,Campaign · per brief,Global + local override,Campaign brief,Per campaign,Campaign manager,P1,Generation constraint
+CB-10,Message,offer_ref,Offer used in this campaign,ref → promotion,Members get early access,Campaign · per brief,Local (per market),Campaign brief,Per campaign,Campaign manager,P0,Generate + check
+CB-11,Creative,mandatory_elements,Elements every variant must contain,"list{element, rule}","Swoosh, product shot, end card, offer terms",Campaign · per brief,Global,Campaign brief,Per campaign,Campaign manager,P0,Pre-flight check
+CB-12,Creative,seed_concepts,Approved seed concepts,list[asset_id],2 approved seed concepts,Campaign · per brief,Global,Campaign brief,Per campaign,Creative lead,P0,Generation constraint
+CB-13,Creative,variant_plan,Concepts × placements × formats × markets,auto = product of lists,2 × 4 × 4 × 2 = 64,Campaign · per brief,Global,Auto-derived,Per campaign,System,P1,Generation constraint
+CB-14,Creative,test_variables,What varies across variants,"list{element, values[]}",Hook: athlete vs everyday runner; CTA colour,Campaign · per brief,Global,Campaign brief,Per campaign,Campaign manager,P1,Generation constraint
+CB-15,Creative,campaign_must_avoid,Campaign-specific no-gos,list,No medical or injury-prevention wording,Campaign · per brief,Global + local override,Campaign brief,Per campaign,Campaign manager,P1,Generate + check
+CB-16,Destination,landing_pages,Landing URL and UTM per market,"list{market, url, utm_template}",nike.com/de/… ?utm_… (per market),Campaign · per brief,Local (per market),Campaign brief,Per campaign,Campaign manager,P0,Pre-flight check
+CB-17,Budget,budget_split,Budget and split by market/channel,"{total, currency, split}",€80k · 60% DE / 40% JP,Campaign · per brief,Global + local override,Campaign brief,Per campaign,Media,P2,Ranking / selection
+CB-18,Review,approvers_deadline,Sign-off people and ship-ready deadline,"list{stage, person, due}",Brand lead · Tue,Campaign · per brief,Global + local override,Campaign brief,Per campaign,Campaign manager,P1,Context only

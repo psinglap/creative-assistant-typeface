@@ -1,0 +1,140 @@
+{
+  "_doc": "SAMPLE / ILLUSTRATIVE. Proposed shape of the brand node in the Arc Graph. Hypothetical brand 'Halo Nutrition' (CPG wellness). Purpose: confirm with Typeface which of these fields already exist in Brand Kit, which are derived, and which are absent.",
+  "_confirm_with_typeface": [
+    "Which fields below already exist in Brand Hub / Brand Kit today?",
+    "Which are free text vs. structured and machine-checkable?",
+    "Who writes them: brand team at the customer, or inferred from uploaded assets?",
+    "What is the staleness / review cadence on each?",
+    "Is there a confidence or provenance value attached to each field?"
+  ],
+
+  "brand_id": "halo-nutrition",
+  "brand_name": "Halo Nutrition",
+  "last_reviewed": "2026-07-14",
+  "owner": "brand.ops@halonutrition.com",
+  "governance": {
+    "source_of_truth": "Brand book v6.2 (PDF, 88pp) + Figma library 'Halo DS 3.0'",
+    "fields_machine_checkable": 31,
+    "fields_free_text_only": 12,
+    "known_stale_fields": ["packaging_photography_rules", "sub_brand_lockups"]
+  },
+
+  "identity": {
+    "logo": {
+      "primary": { "asset_id": "ast_logo_primary_horizontal", "formats": ["svg","png"] },
+      "variants": ["horizontal", "stacked", "mark_only", "reversed_white", "single_colour_black"],
+      "min_size_px": { "digital": 96, "digital_mark_only": 32 },
+      "clear_space_rule": "1.0x the height of the 'H' mark on all four sides",
+      "clear_space_machine_rule": { "unit": "multiple_of_mark_height", "value": 1.0 },
+      "placement_preference": ["top_left", "bottom_right"],
+      "prohibited": [
+        "recolouring outside approved palette",
+        "rotation",
+        "drop shadow or outer glow",
+        "placing over a face or over product label text",
+        "stretching / non-uniform scale",
+        "mark_only at retail media placements (retailers require full lockup)"
+      ]
+    },
+    "colour": {
+      "primary": [
+        { "token": "halo-green-600", "hex": "#0F6B4F", "role": "primary brand", "min_usage_pct_of_canvas": 8 },
+        { "token": "halo-cream", "hex": "#F4EFE4", "role": "background" }
+      ],
+      "secondary": [
+        { "token": "halo-citrus", "hex": "#F2A93B", "role": "accent / CTA only", "max_usage_pct_of_canvas": 15 },
+        { "token": "halo-ink", "hex": "#14201C", "role": "body copy" }
+      ],
+      "prohibited_hex_neighbourhoods": ["#FF0000 red family (reserved for recall / safety comms)"],
+      "tolerance": { "deltaE_max": 3.0, "note": "how far a generated colour may drift from token before it is flagged" },
+      "pairing_rules": [
+        { "fg": "halo-ink", "bg": "halo-cream", "min_contrast": 4.5, "status": "approved" },
+        { "fg": "halo-cream", "bg": "halo-citrus", "min_contrast": 4.5, "status": "prohibited", "reason": "fails WCAG AA at body size" }
+      ]
+    },
+    "typography": {
+      "display": { "family": "Halo Grotesk", "weights": [600, 700], "tracking": "-0.02em", "case": "sentence case only" },
+      "body": { "family": "Inter", "weights": [400, 500] },
+      "fallbacks_permitted": ["Arial"],
+      "min_font_size_px": { "mobile_feed": 24, "mobile_story": 28, "desktop_display": 14, "legal_disclaimer": 11 },
+      "max_headline_chars": 42,
+      "prohibited": ["ALL CAPS headlines over 3 words", "italics in headlines", "more than 2 type sizes per creative"]
+    },
+    "imagery": {
+      "style": "natural daylight, shallow depth of field, matte finish, real people mid-motion",
+      "prohibited": [
+        "clinical / lab settings",
+        "before-and-after body comparisons",
+        "isolated body parts",
+        "stock-looking posed smiles",
+        "product floating without surface contact"
+      ],
+      "product_rendering": {
+        "rule": "pack shot must be the approved render, never AI-regenerated",
+        "approved_render_asset_ids": ["ast_pack_vanilla_900g", "ast_pack_choc_900g", "ast_pack_unflav_450g"],
+        "label_legibility_min_px_height": 40
+      },
+      "people": { "diversity_requirement": "campaign-level cast must span >=3 skin tones and >=2 age brackets", "age_min_depicted": 18 }
+    }
+  },
+
+  "voice": {
+    "personality": ["direct", "warm", "evidence-led", "never preachy"],
+    "we_say": ["fuel your day", "20g protein, nothing weird", "made for real mornings"],
+    "we_never_say": ["detox", "cleanse", "guilt-free", "superfood", "miracle", "shred", "skinny", "burn fat"],
+    "reading_level_target": "US grade 7",
+    "sentence_length_max_words": 14,
+    "cta_library_approved": ["Shop now", "Find in store", "Try Halo", "Add to cart"],
+    "cta_prohibited": ["Buy now before it's gone", "Don't miss out", "Last chance"],
+    "emoji_policy": "permitted on TikTok and Instagram Stories only, max 1 per line"
+  },
+
+  "claims_and_legal": {
+    "_note": "This is the block that most needs to exist and most often does not. Ask Typeface whether anything like it is held today.",
+    "approved_claims": [
+      { "id": "clm_protein_20g", "text": "20g protein per serving", "substantiation": "COA 2026-03 batch panel", "markets": ["US","CA","UK","DE","FR"], "requires_disclaimer": false },
+      { "id": "clm_no_added_sugar", "text": "No added sugar", "markets": ["US","CA"], "requires_disclaimer": true, "disclaimer_id": "dsc_us_sugar" },
+      { "id": "clm_immune_support", "text": "Supports everyday immune health", "markets": ["US"], "requires_disclaimer": true, "disclaimer_id": "dsc_us_dshea", "expires": "2027-01-31" }
+    ],
+    "prohibited_claims": [
+      { "pattern": "cures?|treats?|prevents?", "severity": "blocker", "reason": "FDA disease claim" },
+      { "pattern": "lose \\d+ ?(lbs|kg|pounds)", "severity": "blocker", "reason": "weight-loss outcome claim" },
+      { "pattern": "#1|number one|best selling", "severity": "blocker_on_retail_media", "reason": "Amazon and Walmart prohibit unsubstantiated superlatives" },
+      { "pattern": "clinically proven", "severity": "requires_legal_review" }
+    ],
+    "mandatory_disclaimers": [
+      { "id": "dsc_us_dshea", "text": "These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease.", "markets": ["US"], "min_font_px": 11, "min_contrast": 4.5, "placement": "within creative, not landing page only" },
+      { "id": "dsc_us_sugar", "text": "Not a low calorie food.", "markets": ["US"], "min_font_px": 11 }
+    ],
+    "regulated_market_overrides": {
+      "DE": { "health_claims_allowlist": "EU Register Art.13.1 only", "prohibited_additional": ["immune", "energy boost"] },
+      "FR": { "mandatory_footer": "Pour votre sante, pratiquez une activite physique reguliere." }
+    }
+  },
+
+  "products": [
+    {
+      "sku": "HN-VAN-900",
+      "name": "Halo Daily Protein, Vanilla, 900g",
+      "hero_asset_id": "ast_pack_vanilla_900g",
+      "price_positioning": "premium mainstream",
+      "retailer_availability": ["amazon_us","walmart_us","target_us","dtc"],
+      "retailer_specific_naming": { "walmart_us": "Halo Daily Protein Powder Vanilla 900g", "amazon_us": "Halo Nutrition Daily Protein Powder, Vanilla, 30 Servings" },
+      "never_pair_with": ["HN-CHO-900 in same frame (cannibalisation guidance)"]
+    }
+  ],
+
+  "sub_brands_and_partnerships": {
+    "co_branding_rules": [
+      { "partner": "walmart_connect", "requirement": "Walmart badge bottom-right, 'Available at Walmart' lockup, no competitor retailer visible" },
+      { "partner": "amazon", "requirement": "no Amazon logo in Sponsored Brands creative, no 'Prime' reference without approval" }
+    ]
+  },
+
+  "accessibility_policy": {
+    "min_contrast_body": 4.5,
+    "min_contrast_large_text": 3.0,
+    "alt_text_required": true,
+    "captions_required_on_video": true
+  }
+}

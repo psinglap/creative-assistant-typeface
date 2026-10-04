@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative Assistance for Ad Creatives</title>
+<meta name="description" content="A trust and confidence layer for AI-generated ad creatives. One-pager, prototype, research and data. Typeface product exercise by Pallavi Singla.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+ --bg:#F7F6F3;--pane:#FFFFFF;--p2:#FAF9F7;--p3:#EFEEEA;
+ --ink:#16181B;--i2:#545A60;--i3:#868C92;--line:#E4E2DD;--l2:#CDCBC5;
+ --acc:#C8312B;--accS:#FBEDEC;--accL:#F0C6C3;
+ --grn:#22704F;--grnS:#E9F3EE;--amb:#8A5800;--ambS:#FDF3E2;--vio:#5B4F8E;--vioS:#F0EEF7;
+ --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+ --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#0F1114;--pane:#171A1E;--p2:#1C2025;--p3:#252A30;--ink:#ECEDEA;--i2:#A4AAB0;--i3:#7A8086;--line:#2A2F35;--l2:#3B4149;
+ --acc:#F07F78;--accS:#2A1716;--accL:#4D2622;--grn:#7CC3A1;--grnS:#12221B;--amb:#DFAD59;--ambS:#251C0F;--vio:#B3A8DE;--vioS:#1C1A26;}}
+:root[data-theme="dark"]{
+ --bg:#0F1114;--pane:#171A1E;--p2:#1C2025;--p3:#252A30;--ink:#ECEDEA;--i2:#A4AAB0;--i3:#7A8086;--line:#2A2F35;--l2:#3B4149;
+ --acc:#F07F78;--accS:#2A1716;--accL:#4D2622;--grn:#7CC3A1;--grnS:#12221B;--amb:#DFAD59;--ambS:#251C0F;--vio:#B3A8DE;--vioS:#1C1A26;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3,h4{letter-spacing:-.015em;line-height:1.2;margin:0}
+p{margin:0 0 12px}
+.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--pane) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px;margin:0 auto;padding:12px 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.brand{font-weight:700;font-size:14px;margin-right:auto}
+.brand span{font-family:var(--mono);font-size:10px;color:var(--i3);letter-spacing:.08em;margin-left:8px;font-weight:500}
+.top nav{display:flex;gap:4px;flex-wrap:wrap}
+.top nav a{font-size:13px;color:var(--i2);padding:5px 10px;border-radius:7px}
+.top nav a:hover{background:var(--p3);color:var(--ink);text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;padding:10px 16px;border-radius:9px;border:1px solid var(--l2);color:var(--ink);background:var(--pane)}
+.btn:hover{border-color:var(--i3);text-decoration:none}
+.btn.p{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.thm{border:1px solid var(--l2);background:var(--pane);color:var(--ink);border-radius:7px;width:32px;height:30px;cursor:pointer;font-size:14px}
+main{max-width:1040px;margin:0 auto;padding:0 16px 80px}
+.hero{padding:56px 0 36px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--i3);margin-bottom:14px}
+.hero h1{font-size:clamp(32px,5.4vw,52px);font-weight:700;max-width:820px}
+.hero .lede{font-size:clamp(17px,2.2vw,20px);color:var(--i2);max-width:760px;margin:18px 0 26px}
+.hero .lede b{color:var(--ink)}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.meta{font-size:13px;color:var(--i3);margin-top:22px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:32px 0 0}
+.stat{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat b{display:block;font-family:var(--mono);font-size:28px;font-weight:600;letter-spacing:-.02em}
+.stat span{font-size:13px;color:var(--i2);line-height:1.4;display:block;margin-top:4px}
+section{padding:48px 0 8px}
+section>h2{font-size:clamp(24px,3.4vw,30px);margin-bottom:8px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+.sub{color:var(--i2);max-width:760px;margin-bottom:22px}
+h3{font-size:19px;margin:30px 0 12px}
+.pains{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.pain{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.pain h4{font-size:15px;margin-bottom:6px}
+.pain q{color:var(--i2);font-size:14.5px;quotes:"\201C" "\201D"}
+.pull{margin:22px 0;padding:18px 22px;border-left:3px solid var(--acc);background:var(--pane);border-radius:0 12px 12px 0;font-size:18px;line-height:1.5}
+.pull small{display:block;font-size:13px;color:var(--i3);margin-top:8px}
+.callout{background:var(--ink);color:var(--bg);border-radius:12px;padding:18px 20px;font-weight:600;font-size:17px;margin:20px 0}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--pane);margin:8px 0 16px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--i3);font-weight:500;background:var(--p2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td b{font-weight:600}
+.num{font-family:var(--mono);font-weight:600;white-space:nowrap}
+.pri{font-family:var(--mono);font-size:11px;font-weight:600;padding:2px 7px;border-radius:5px;background:var(--p3);color:var(--i2)}
+.pri.p1{background:var(--accS);color:var(--acc)}
+.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:10px 0 18px}
+.step{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:16px}
+.step .n{font-family:var(--mono);font-size:11px;color:var(--acc);font-weight:600;letter-spacing:.06em}
+.step h4{font-size:15px;margin:6px 0}
+.step p{font-size:13.5px;color:var(--i2);margin:0}
+.classes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.classes span{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:3px 9px;background:var(--p2);color:var(--i2)}
+.acts{display:grid;gap:6px;margin-top:6px}
+.acts div{font-size:13px;display:flex;gap:8px;align-items:baseline}
+.lv{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.lv.a{color:var(--acc);background:var(--accS)}.lv.k{color:var(--amb);background:var(--ambS)}.lv.f{color:var(--vio);background:var(--vioS)}.lv.d{color:var(--i2);background:var(--p3)}
+.proto{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:center;background:var(--pane);border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:8px}
+.proto ul{margin:0;padding-left:18px;color:var(--i2);font-size:14.5px}
+.proto li{margin-bottom:6px}
+.proto li b{color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column}
+.card h4{font-size:15px;margin-bottom:6px}
+.card p{font-size:13.5px;color:var(--i2);flex:1}
+.card a{font-size:13.5px;font-weight:600}
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.qg{background:var(--pane);border:1px solid var(--line);border-radius:12px;padding:18px}
+.qg h4{font-size:14px;margin-bottom:12px;color:var(--acc)}
+blockquote{margin:0 0 14px;font-size:14.5px;line-height:1.55}
+blockquote:last-child{margin-bottom:0}
+blockquote cite{display:block;font-style:normal;font-size:12px;color:var(--i3);margin-top:4px;font-family:var(--mono)}
+.src{font-size:12.5px;color:var(--i3);margin-top:6px}
+footer{border-top:1px solid var(--line);padding:28px 16px;text-align:center;font-size:13px;color:var(--i3)}
+@media (max-width:820px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .loop,.cards{grid-template-columns:1fr 1fr}
+ .pains,.quotes,.proto{grid-template-columns:1fr}
+ .top nav{display:none}
+}
+@media (max-width:520px){.loop,.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+ <div class="brand">Creative Assistance<span>TYPEFACE PRODUCT EXERCISE</span></div>
+ <nav>
+  <a href="#problem">Problem</a><a href="#research">Research</a><a href="#solution">Solution</a>
+  <a href="#prototype">Prototype</a><a href="#metrics">Metrics</a><a href="#data">Data</a><a href="#anecdotes">Anecdotes</a>
+ </nav>
+ <button class="thm" id="thm" aria-label="Toggle light and dark theme">&#9680;</button>
+</div></header>
+
+<main>
+<div class="hero">
+ <div class="eyebrow">Creative Assistant · V1 one-pager</div>
+ <h1>A trust and confidence layer for AI-generated ad creatives.</h1>
+ <p class="lede">It sees every variant, names every problem in plain words, fixes what's safe, asks before anything else, and tells the marketer when it's ready to ship. <b>The marketer stays in control and ships faster, with confidence.</b></p>
+ <div class="ctas">
+  <a class="btn p" href="prototype/">▶ Open the prototype</a>
+  <a class="btn" href="https://github.com/psinglap/creative-assistant-typeface">GitHub repo</a>
+  <a class="btn" href="downloads/Creative-Assistance-for-Ad-Creatives_Pallavi-Singla.docx" download>⬇ Download the one-pager (.docx)</a>
+  <a class="btn" href="#data">Data &amp; reference sheets</a>
+ </div>
+ <p class="meta">Created by <b>Pallavi Singla</b> · September 2026 · <a href="https://github.com/psinglap/creative-assistant-typeface/blob/main/LICENSE">CC BY 4.0</a>: free to use and adapt with credit</p>
+ <div class="stats">
+  <div class="stat"><b>88%</b><span>of marketers make more creative with AI</span></div>
+  <div class="stat"><b>45%</b><span>see better quality</span></div>
+  <div class="stat"><b>40%</b><span>of teams had to pause or pull ads when AI got it wrong</span></div>
+  <div class="stat"><b>200+</b><span>variants from one approved master</span></div>
+ </div>
+</div>
+
+<section id="problem">
+ <div class="kick">The problem</div>
+ <h2>One master becomes 200+ variants. The marketer reviews all of them, and isn't a designer.</h2>
+ <p class="sub">AI-generated creative has raised volume faster than quality control, and that undermines the confidence to ship. Across formats, audiences, channels and markets, marketers hit four P1 pains:</p>
+ <div class="pains">
+  <div class="pain"><h4>1. Too many to review</h4><q>I check the first ten properly. The others, I skim or go back to designer with high-level inputs.</q></div>
+  <div class="pain"><h4>2. I don't know the design vocabulary</h4><q>Something's off, but I can't name it. I know it doesn't feel right, I just can't say why. So I write 'make it pop' and designer go round again.</q></div>
+  <div class="pain"><h4>3. AI quietly misses the brand</h4><q>The colors are almost ours, and it looks a bit AI. It all looked fine to me and hard to differentiate.</q></div>
+  <div class="pain"><h4>4. Low confidence to ship</h4><q>I am not confident in when it's ready. I ship with fear.</q></div>
+ </div>
+ <p class="src">In their words, paraphrased from primary interviews with marketers and online forums. → <a href="#anecdotes">Primary anecdotes</a></p>
+ <div class="pull">"10 years in marketing. I still get the sweats when I am about to hit send, even after the team has looked over the final (final) draft."<small>Marketer, 10+ years</small></div>
+ <div class="callout">So the Creative Assistant has to give marketers the confidence to click Ship, not just save time. That shapes every design choice below.</div>
+
+ <h3>The marketer: Romil</h3>
+ <p>Owns 50 campaigns a quarter across 4 channels and 2 to 5 markets. Reports to a Director of Growth on pipeline and CPA, not on craft. Romil is <b>table-native</b>: the day is rows with statuses, yet every creative tool offers a canvas, because every creative tool descends from a design tool.</p>
+ <div class="tw"><table>
+  <tr><th>Trained in</th><td>Audience strategy, performance analysis. Not typography, colour theory, composition or accessibility</td></tr>
+  <tr><th>Works in</th><td>Meta Ads Manager and Google Ads (both tables), a spreadsheet, Slack, the brief doc</td></tr>
+  <tr><th>Measured on</th><td>Launching on time, hitting CPA</td></tr>
+  <tr><th>Fear</th><td>Putting the brand in trouble</td></tr>
+ </table></div>
+
+ <h3>Pain points and Creative Assistant actions</h3>
+ <div class="tw"><table>
+  <tr><th>#</th><th>Pain</th><th>Frequency</th><th>What she says or does</th><th>Priority</th><th>Solved today by</th><th>What the Creative Assistant does</th></tr>
+  <tr><td>1</td><td><b>200 variants, no way to triage</b></td><td>Per batch</td><td>Volume fatigue: checks the first 10 of 200</td><td><span class="pri p1">P1</span></td><td>High-level notes to the designer</td><td><b>Cluster by cause.</b> 70 identified problems become 8 classes (A to H). The assistant takes approval per cluster.</td></tr>
+  <tr><td>2</td><td><b>"Something is off and I can't name it"</b></td><td>5 to 15x per batch</td><td>Asks a colleague or comments on designs</td><td><span class="pri p1">P1</span></td><td>Shares a feeling, not a detail; designer fixes it across many creatives</td><td><b>Plain-language vocabulary that cites the rule.</b> "Brand book p.14", not "low contrast".</td></tr>
+  <tr><td>3</td><td><b>AI output is subtly off-brand or reads as AI</b></td><td>Continuous</td><td>Colours near the palette but not it; audiences spot AI imagery</td><td><span class="pri p1">P1</span></td><td>Eyeballing, which misses it</td><td><b>Exact brand and quality checks</b>, cited to the rule (Classes E, G, H).</td></tr>
+  <tr><td>4</td><td><b>Doesn't know when it's ready to ship</b></td><td>Per batch</td><td>Uploads on gut feel, finds out from platform rejections</td><td><span class="pri p1">P1</span></td><td>Gut feel and chasing sign-offs in Slack</td><td><b>Ship-readiness verdict</b> per variant and per batch: Ready / Fix first / Needs a person.</td></tr>
+  <tr><td>5</td><td>Can't judge a market she doesn't know</td><td>Per campaign</td><td>Translation is fluent, grammatical and wrong</td><td><span class="pri">P2</span></td><td>Slow agency loop</td><td>Market persona agent: reviews as a local audience would, says when it lacks knowledge, asks the local reviewer only those gaps.</td></tr>
+  <tr><td>6</td><td>Review tools are too slow</td><td>Continuous</td><td>Observed 31s to 8m32s per generation</td><td><span class="pri">P2</span></td><td>Waits, or skips review</td><td>Background checks on create or edit, stored per variant. Chat reads stored results. Target under 60s p95 per batch.</td></tr>
+  <tr><td>7</td><td>Can't tell if a claim is legal in-market</td><td>Per market launch</td><td>Slacks legal, waits, or guesses</td><td><span class="pri">P3</span></td><td>Slack to legal</td><td>Legal &amp; claims agent: checks claims against the approved list, sends only unknowns to legal. Answers become rules.</td></tr>
+  <tr><td>8</td><td>The context kit has gaps she can't see</td><td>Per campaign</td><td>Can't tell a rule is missing</td><td><span class="pri">P3</span></td><td>Fixed variant by variant</td><td>Flags checks with no rule to compare against ("No rule for Japanese type size"), asks the brand owner once, adds it to the Brand Kit.</td></tr>
+ </table></div>
+</section>
+
+<section id="research">
+ <div class="kick">Research</div>
+ <h2>How this was grounded</h2>
+ <p class="sub">Primary conversations with practitioners, plus about 93,000 words of sourced desk research. Every claim in the research files carries an inline source, and what couldn't be verified is listed explicitly.</p>
+ <div class="cards">
+  <div class="card"><h4>Primary conversations</h4><p>Practising marketers (5 to 10+ years, at a global sportswear brand and a CPG brand), a designer (10+ years) and a copywriter (12+ years), on how they review variants, give feedback, decide something is ready, and what they fear.</p><a href="#anecdotes">Anecdotes →</a></div>
+  <div class="card"><h4>Voice of customer</h4><p>Practitioner discussion across Reddit (r/marketing, r/PPC, r/FacebookAds, r/graphic_design, r/branding), LinkedIn and trade press, 2025 to 2026, including counter-evidence.</p><a href="https://github.com/psinglap/creative-assistant-typeface/blob/main/research/raw/marketer-voice.md">Marketer voice →</a></div>
+  <div class="card"><h4>Typeface teardown</h4><p>An <code>Evaluate</code> primitive already exists. The Brand Kit caps at 5 values, 5 tones and 10 rules. Observed latency ranged from 31s to 8m32s, so verdicts must be pre-computed.</p><a href="https://github.com/psinglap/creative-assistant-typeface/blob/main/research/raw/typeface-company-profile.md">Company profile →</a></div>
+  <div class="card"><h4>Competitive landscape</h4><p>Four tiers mapped, plus how 15+ creative-QA tools report to marketers. Nobody detects genAI craft defects, and Vidmob and CreativeX are moving away from the marketer's seat.</p><a href="https://github.com/psinglap/creative-assistant-typeface/blob/main/research/raw/competitive-landscape.md">Competitive map →</a></div>
+  <div class="card"><h4>Channel specs &amp; rejections</h4><p>Official specs for Meta, Google, Amazon, Walmart, TikTok, CTV, DOOH and IAB, plus enforcement data and accessibility thresholds. The numbers in the rule library are real and sourced.</p><a href="https://github.com/psinglap/creative-assistant-typeface/blob/main/research/raw/channel-specs-and-rejections.md">Rule library research →</a></div>
+  <div class="card"><h4>Synthesis</h4><p>Research dossier, solution thesis with eight evidence-backed design principles, and the new-market journey with graduated autonomy by coverage.</p><a href="https://github.com/psinglap/creative-assistant-typeface/tree/main/research">All research →</a></div>
+ </div>
+</section>
+
+<section id="solution">
+ <div class="kick">Proposed solution</div>
+ <h2>A creative quality standard that keeps the marketer in control</h2>
+ <p class="sub">Every variant is checked in the background, and findings are grouped by cause. Every known issue rolls up into 8 decision classes, so hundreds of findings become a handful of decisions. For every issue, the Creative Assistant runs the same loop:</p>
+ <div class="loop">
+  <div class="step"><div class="n">01</div><h4>Identify</h4><p>Checks every variant in the background against pre-defined rules.</p></div>
+  <div class="step"><div class="n">02</div><h4>Classify</h4><p>Sorts it into one of 8 decisions.</p>
+   <div class="classes"><span>A Image quality</span><span>B Content accuracy</span><span>C Layout &amp; cropping</span><span>D Readability</span><span>E Brand adherence</span><span>F Platform policies</span><span>G AI-slop</span><span>H Batch health</span></div></div>
+  <div class="step"><div class="n">03</div><h4>Say it in marketer words</h4><p>Uses the pre-defined vocabulary and cites the rule and reference doc.</p></div>
+  <div class="step"><div class="n">04</div><h4>Set the action</h4>
+   <div class="acts">
+    <div><span class="lv a">Auto-fix</span>measurable and reversible</div>
+    <div><span class="lv k">Ask</span>it changes the creative</div>
+    <div><span class="lv f">Flag</span>it's a judgement call</div>
+    <div><span class="lv d">Designer</span>it needs craft</div>
+   </div></div>
+ </div>
+ <div class="callout">This is the confidence a marketer needs to click Ship.</div>
+ <h3>Graduated autonomy by coverage</h3>
+ <p>The agent's permission to act depends on how much context it holds, scored per market and per dimension. Above 0.8 it checks and auto-fixes. Between 0.5 and 0.8 it proposes but never applies. <b>Below 0.5 it refuses to issue a readiness verdict</b>, names every dimension it can't assess, and requires a named human attestation before the ship gate clears. A green tick on a market the system knows nothing about is the worst output the product can produce.</p>
+</section>
+
+<section id="prototype">
+ <div class="kick">Prototype</div>
+ <h2>Arc Proof</h2>
+ <div class="proto">
+  <div>
+   <p>A clickable model of the Creative Assistant on top of 152 generated variants across four campaigns: <b>Pegasus 41 Launch</b> (Amazon, Walmart, Google Display, Meta), <b>New Year Reset</b> US &amp; DE, <b>New Year Reset JP</b> (a thin-context market) and <b>Spring Refresh</b>.</p>
+   <ul>
+    <li><b>Overview</b> of every campaign's ship state</li>
+    <li><b>Canvas</b> with real placement sizes: pan, zoom, inspect any variant</li>
+    <li><b>Status</b> grouped by the 8 decision classes, each finding cited</li>
+    <li><b>Chat:</b> "Is this ready to ship?" or <code>@typeface fix everything you can</code></li>
+    <li><b>Overrides</b> that require a reason, and a <b>Ship</b> report of who decided what</li>
+   </ul>
+  </div>
+  <div style="text-align:center"><a class="btn p" href="prototype/">▶ Open the prototype</a><p class="src" style="margin-top:12px">Desktop recommended. Data is illustrative; rules and specs are real.</p></div>
+ </div>
+</section>
+
+<section id="metrics">
+ <div class="kick">How we'll measure success</div>
+ <h2>North star: time to ship one campaign</h2>
+ <p class="sub">Brief → all variants approved. <b>Target: −50% vs baseline in 90 days.</b> Review loops (vague feedback, designer rounds, platform rejections) are where campaigns lose weeks, and every Creative Assistant capability exists to remove a loop. If the assistant closes most issues without a human and cuts designer rounds to one, roughly half the review time goes away. The target will be confirmed against the week 1 to 2 baseline.</p>
+ <div class="tw"><table>
+  <tr><th>Dimension</th><th>Metric</th><th>Definition and how we measure</th><th>90-day target</th></tr>
+  <tr><td><b>Speed</b></td><td>Iterations to launch a campaign</td><td>Median revision rounds per campaign across all variants before approval</td><td class="num">−2 rounds</td></tr>
+  <tr><td><b>Trust</b> (leading)</td><td>Fix acceptance rate</td><td>Suggested fixes applied ÷ fixes shown</td><td class="num">&gt;60%</td></tr>
+  <tr><td><b>Efficiency</b></td><td>Human editing time</td><td>Hands-on edit time per campaign, marketer + designer, from canvas and design-tool session logs</td><td class="num">−50%</td></tr>
+  <tr><td><b>Certainty</b></td><td>Designer escalation rate</td><td>Batches with at least one "Designer needed" item ÷ all batches</td><td class="num">&lt;15%</td></tr>
+  <tr><td><b>Coverage</b></td><td>Assistant catch rate</td><td>Issues the assistant flagged first ÷ all issues found by assistant or human</td><td class="num">&gt;80%</td></tr>
+ </table></div>
+ <h3>Guardrails</h3>
+ <div class="tw"><table>
+  <tr><th>Guardrail</th><th>Definition</th><th>Limit</th></tr>
+  <tr><td><b>False-flag rate</b></td><td>Flags dismissed as incorrect ÷ all flags raised</td><td class="num">&lt;5%</td></tr>
+  <tr><td><b>Override rate</b></td><td>Blockers overridden ÷ blockers raised</td><td class="num">&lt;20%</td></tr>
+  <tr><td><b>Ad platform rejection rate</b></td><td>Disapprovals per 100 variants submitted</td><td class="num">−50%</td></tr>
+ </table></div>
+ <h3>Out of scope for V1</h3>
+ <p>The P2 and P3 pains (rows 5 to 8): market persona agent, faster review tooling, legal &amp; claims agent, video, motion and audio, and post-launch monitoring.</p>
+</section>
+
+<section id="data">
+ <div class="kick">Appendix · What breaks at scale</div>
+ <h2>The defect library and the context model</h2>
+ <p class="sub">Built from primary discussions with marketers and secondary research. Worked example: a global sportswear brand's "Run Your City" campaign, 64 variants from 2 approved seed concepts across 4 channels, 4 formats and 2 local markets (DE, JP), localised from one en-US master. Brand details are illustrative; <b>the channel, accessibility and localisation numbers are real and sourced.</b></p>
+ <div class="cards">
+  <div class="card"><h4>70 defects, classes A to H</h4><p>For each defect: the marketer-facing vocabulary, why it happens at scale, the threshold, how it's detected, who settles it (Assistant 40 · Your call 15 · Flag only 15), and which reference doc it cites.</p><a href="https://github.com/psinglap/creative-assistant-typeface/blob/main/data/defect-classes-A-H.csv">CSV</a><a href="https://docs.google.com/spreadsheets/d/1P-sl-Q_MRY_gXsLshoe3Nleqs5H3Z6jXBEI4XqTdKFA/edit">Google Sheet</a></div>
+  <div class="card"><h4>10 reference docs, 114 parameters</h4><p>Design system, brand context, legal &amp; claims, audience, market &amp; locale, campaign brief, product &amp; offer, channel specs &amp; policies, performance history, governance &amp; review. Each parameter has a format, example, scope, owner, refresh cadence and priority.</p><a href="https://github.com/psinglap/creative-assistant-typeface/tree/main/data/context-parameters">Browse the CSVs →</a></div>
+  <div class="card"><h4>Proposed JSON schemas</h4><p>Seven machine-readable schemas: brand context, audience and market, the variant object, pre-flight findings, performance history, channel rule library, and market coverage scoring.</p><a href="https://github.com/psinglap/creative-assistant-typeface/tree/main/data/sample-schemas">Browse the schemas →</a></div>
+ </div>
+ <h3>Defects per class</h3>
+ <div class="tw"><table>
+  <tr><th>Class</th><th>Example, in marketer words</th><th>Defects</th></tr>
+  <tr><td><b>A · Image quality</b></td><td>"This will look blurry on Reels"</td><td class="num">9</td></tr>
+  <tr><td><b>B · Content accuracy</b></td><td>"The price in this ad doesn't match your offer"</td><td class="num">16</td></tr>
+  <tr><td><b>C · Layout &amp; cropping</b></td><td>"The German headline is cut off"</td><td class="num">7</td></tr>
+  <tr><td><b>D · Readability</b></td><td>"The CTA is hard to read on the orange"</td><td class="num">6</td></tr>
+  <tr><td><b>E · Brand adherence</b></td><td>"The logo is too close to the edge"</td><td class="num">7</td></tr>
+  <tr><td><b>F · Platform policies</b></td><td>"The required health disclaimer is missing"</td><td class="num">5</td></tr>
+  <tr><td><b>G · AI-slop</b></td><td>"Three have a malformed lace structure"</td><td class="num">12</td></tr>
+  <tr><td><b>H · Batch health</b></td><td>"Two variants did not get the last fix"</td><td class="num">8</td></tr>
+ </table></div>
+
+ <h3>Secondary market indicators</h3>
+ <div class="tw"><table>
+  <tr><th>Indicator</th><th>Figure</th><th>Source</th></tr>
+  <tr><td>Marketers reporting higher creative volume since adopting AI</td><td class="num">88%</td><td>WARC for TikTok</td></tr>
+  <tr><td>Marketers reporting a significant improvement in quality</td><td class="num">45%</td><td>WARC for TikTok</td></tr>
+  <tr><td>Cite difficulty maintaining brand voice or visual identity</td><td class="num">26%</td><td>WARC for TikTok</td></tr>
+  <tr><td>Cite inconsistency across assets in the same campaign</td><td class="num">23%</td><td>WARC for TikTok</td></tr>
+  <tr><td>Cite excessive human editing requirements</td><td class="num">21%</td><td>WARC for TikTok</td></tr>
+  <tr><td>Brands that made video ads in 2026</td><td class="num">78%</td><td>Bannerflow</td></tr>
+  <tr><td>Brands that ran those video ads</td><td class="num">46%</td><td>Bannerflow</td></tr>
+  <tr><td>Ad executives who believe Gen Z and Millennials feel positive about AI ads</td><td class="num">82%</td><td>IAB</td></tr>
+  <tr><td>Gen Z and Millennial consumers who actually do</td><td class="num">45%</td><td>IAB</td></tr>
+  <tr><td>Perception gap, 2024 to 2026</td><td class="num">32 to 37 pts</td><td>IAB</td></tr>
+ </table></div>
+ <p class="src">WARC for TikTok, n=400 marketers in creative production decisions, UK/US/AU/BR, May 2026. Bannerflow platform analysis, 300+ brands, 2.33M creative assets, Jan to Aug 2026. IAB, "The AI Ad Gap Widens", n=505 US Gen Z/Millennial consumers plus 104 US ad executives, Oct 2025 to Jan 2026.</p>
+</section>
+
+<section id="anecdotes">
+ <div class="kick">Appendix · Primary anecdotes</div>
+ <h2>The reality, in their words</h2>
+ <div class="quotes">
+  <div class="qg"><h4>Marketers don't have the design vocabulary</h4>
+   <blockquote>"All I get at the end is 'mmmm this doesn't feel right'."<cite>Designer, 10+ years</cite></blockquote>
+   <blockquote>"If the marketer really knew what they wanted they'd do it. The issue is they think they'll 'know it when they see it', or they are operating in a blind leading the blind situation."<cite>Copywriter, 12+ years</cite></blockquote>
+   <blockquote>"You know this line-height is wrong? You know that this design has the same styling like most AI designs and people would see that it is clearly AI? You know that the spacing and the weighting of elements is wrong?"<cite>r/graphic_design, Sep 2026</cite></blockquote>
+  </div>
+  <div class="qg"><h4>One hour of media ops against two weeks of creative approval</h4>
+   <blockquote>"Campaign structure setup might take an hour but creative approval can take two weeks minimum, it's wild how disproportionate that is."<cite>r/SocialMediaMarketing</cite></blockquote>
+   <blockquote>"Briefs, reviews, etc are scattered across so many places separate from the asset that context just gets lost and it's just way too slow."<cite>Marketer, 5+ years</cite></blockquote>
+   <blockquote>"I make sure it's at least 5 other people to make sure all the information is correct at my job, I refuse to take the blame, at least alone. And the final review is done by the owner, and he approves without actually looking at things."<cite>Marketer, 8+ years</cite></blockquote>
+  </div>
+  <div class="qg"><h4>Marketers already think internal review is worthless</h4>
+   <blockquote>"We used to do team feedback rounds and they were useless because teammates picked apart copy and colors no real customer would ever notice."<cite>Marketer, 8+ years</cite></blockquote>
+   <blockquote>"Don't ask 'what do you think?'. Give colleagues a five-second view, then ask three fixed questions: what is being sold, who is it for, and what should you do next?"<cite>r/marketing thread</cite></blockquote>
+  </div>
+  <div class="qg"><h4>The cost of one mistake is personal and long</h4>
+   <blockquote>"They did proceed to remind me and the entire team about my error at every Monday morning standup we had for 6 months until I eventually quit." (on a $14,000 colour error)<cite>Marketer, 5+ years</cite></blockquote>
+   <blockquote>"10 years in marketing. I still get the sweats when I am about to hit send, even after the team has looked over the final (final) draft."<cite>Marketer, 10+ years</cite></blockquote>
+  </div>
+  <div class="qg"><h4>Platform automation can add an AI label the marketer doesn't control</h4>
+   <blockquote>"If you use the 'Add Animation' feature you might get slapped with a 'created with AI' label on your Ad which I definitely DO NOT want. The community I am advertising to primarily hates AI."<cite>r/FacebookAds</cite></blockquote>
+  </div>
+  <div class="qg"><h4>The AI-specific frustrations</h4>
+   <blockquote>"When an ad is generated rather than built, the brand usually comes out slightly wrong. Colours that are near your palette but not actually it, or a logo that's been redrawn... that gap is where you lose them."<cite>r/FacebookAds, Jul 2026</cite></blockquote>
+   <blockquote>"A customer actually reached out to me to say my Instagram ad looked strangely cropped and blurred. In Ads Manager my creative looks fine, but in real Instagram placements the image is clearly altered."<cite>r/FacebookAds, Jan 2026</cite></blockquote>
+   <blockquote>"Most people don't have brand guidelines that are actually usable by an AI tool. They have a mood board and a color palette. That's not governance."<cite>r/branding, Jun 2026</cite></blockquote>
+  </div>
+  <div class="qg"><h4>AI-generated images are identifiable in ads</h4>
+   <blockquote>"Our CTR dropped 40% after we switched to AI generated lifestyle shots. The images looked fine to me... But apparently Gen Z can tell. Stuff that's not obvious unless you're looking for it."<cite>Marketer, 5+ years</cite></blockquote>
+   <blockquote>"Everyone thinks they can identify AI images. I'm seeing the accusations everywhere these days."<cite>r/marketing, Jan 2026</cite></blockquote>
+  </div>
+  <div class="qg"><h4>Review is treated as a vibe, not a control</h4>
+   <blockquote>"Clients started telling me not to use AI on things that had no AI at all. People can't tell the difference."<cite>Designer turned marketer, r/marketing, Aug 2026</cite></blockquote>
+   <blockquote>"The scary part isn't even the AI imo, it's that they're treating review as a vibes based obstacle instead of a control."<cite>r/marketing, Jun 2026</cite></blockquote>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ © 2026 <b>Pallavi Singla</b> · Typeface product exercise · <a href="https://github.com/psinglap/creative-assistant-typeface">Source on GitHub</a> · <a href="downloads/Creative-Assistance-for-Ad-Creatives_Pallavi-Singla.docx" download>Download .docx</a> · <a href="downloads/defect-classes-A-H.xlsx" download>Defect sheet .xlsx</a> · <a href="https://github.com/psinglap/creative-assistant-typeface/blob/main/LICENSE">CC BY 4.0</a><br>
+ Brand examples are illustrative and don't represent any company's actual guidelines, claims or data. Not affiliated with or endorsed by Typeface.
+</footer>
+<script>
+document.getElementById("thm").onclick=function(){
+ var r=document.documentElement,cu=r.getAttribute("data-theme");
+ var d=cu?cu==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+ r.setAttribute("data-theme",d?"light":"dark");
+};
+</script>
+</body>
+</html>

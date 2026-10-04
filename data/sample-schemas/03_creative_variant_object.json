@@ -1,0 +1,100 @@
+{
+  "_doc": "SAMPLE / ILLUSTRATIVE. Proposed object model for one adapted ad variant. This is the single most important thing to confirm with Typeface, because the entire assisted-editing experience depends on whether a variant is layered and addressable or a flat pixel output.",
+  "_confirm_with_typeface": [
+    "Is a generated variant layered (template + text layers + asset slots) or a flat raster?",
+    "Can one element be changed without regenerating the whole composition?",
+    "Is the parent-child link to the seed layout preserved, and does a parent edit propagate to children?",
+    "Is there a stable element ID across sizes, so 'the headline' is the same object in 1:1 and 9:16?",
+    "Is there an edit history / provenance trail per element (designer-authored vs. AI-generated vs. marketer-edited)?"
+  ],
+
+  "variant_id": "var_ny27_meta_9x16_de_a3",
+  "campaign_id": "camp_2027_new_year_reset",
+  "lineage": {
+    "seed_concept_id": "seed_ny27_concept_b",
+    "seed_author": "designer:m.okafor",
+    "seed_approved_at": "2026-11-02",
+    "generation_path": ["seed_ny27_concept_b", "master_1x1_en", "resize_9x16_en", "localise_de"],
+    "parent_variant_id": "var_ny27_meta_9x16_en_a3",
+    "propagation_policy": "parent_text_edit_cascades_to_children_unless_child_is_locked",
+    "children": ["var_ny27_tiktok_9x16_de_a3"]
+  },
+
+  "target": {
+    "channel": "meta",
+    "placement": "instagram_reels",
+    "aspect_ratio": "9:16",
+    "canvas_px": { "w": 1080, "h": 1920 },
+    "market_id": "de",
+    "audience_id": "aud_busy_parent_35_49",
+    "flight": { "starts": "2026-12-26", "ends": "2027-01-31" }
+  },
+
+  "layers": [
+    {
+      "element_id": "el_headline",
+      "type": "text",
+      "role": "headline",
+      "content": "Zwanzig Gramm Protein, nichts Kuenstliches",
+      "source": "ai_translated",
+      "source_of_truth_en": "20g protein, nothing weird",
+      "style": { "font": "Halo Grotesk", "weight": 700, "size_px": 84, "colour": "#F4EFE4", "line_height": 1.1 },
+      "box": { "x": 84, "y": 1180, "w": 912, "h": 260 },
+      "computed": { "rendered_lines": 4, "overflow_px": 62, "fits_box": false },
+      "locked_by_designer": false,
+      "editable": true
+    },
+    {
+      "element_id": "el_logo",
+      "type": "asset_slot",
+      "role": "logo",
+      "asset_id": "ast_logo_primary_horizontal_reversed",
+      "box": { "x": 84, "y": 120, "w": 240, "h": 64 },
+      "computed": { "clear_space_actual_multiple": 0.6, "clear_space_required_multiple": 1.0, "within_safe_zone": false },
+      "locked_by_designer": true,
+      "lock_rationale": "Logo position is fixed across the New Year system so the set reads as one campaign."
+    },
+    {
+      "element_id": "el_pack_shot",
+      "type": "asset_slot",
+      "role": "product",
+      "asset_id": "ast_pack_vanilla_900g",
+      "source": "approved_render",
+      "computed": { "label_text_height_px": 31, "label_legible": false, "occlusion_pct": 0 },
+      "locked_by_designer": true
+    },
+    {
+      "element_id": "el_cta",
+      "type": "text",
+      "role": "cta",
+      "content": "Jetzt kaufen",
+      "source": "brand_kit_approved_translation",
+      "computed": { "contrast_ratio": 2.9, "against": "#F2A93B" },
+      "locked_by_designer": false
+    },
+    {
+      "element_id": "el_disclaimer",
+      "type": "text",
+      "role": "legal",
+      "content": null,
+      "source": "missing",
+      "computed": { "required_by": "market_de_health_claim_rule", "present": false }
+    },
+    {
+      "element_id": "el_background",
+      "type": "image",
+      "source": "ai_generated",
+      "prompt_used": "parent and child in bright kitchen morning, natural light",
+      "computed": { "focal_point": { "x": 0.42, "y": 0.31 }, "face_bbox_within_safe_zone": true, "style_similarity_to_brand_ref": 0.71 }
+    }
+  ],
+
+  "assistant_state": {
+    "readiness": "needs_attention",
+    "blockers": 2,
+    "warnings": 3,
+    "suggestions": 1,
+    "last_checked": "2026-11-18T09:12:00Z",
+    "checked_against_versions": { "brand_kit": "6.2", "channel_specs": "2026-11-01", "legal_rules": "2026-10-15" }
+  }
+}

@@ -1,0 +1,8 @@
+ID,Element,Parameter,What it is,Format / allowed values,"Example (Nike, illustrative)",Context type,Scope,Captured at,Refresh,Owner,Priority,Used for
+GV-01,People,local_reviewers,Named reviewer per market and dimension,"list{market, reviewer, dimensions[]}","JP · named reviewer · language, culture",Brand · one-time,Local (per market),Market setup,On change (versioned),Market lead,P0,Context only
+GV-02,People,approval_chain,Sign-off stages,"list{stage, role}",Global creative → local brand → legal,Brand · one-time,Global + local override,Brand onboarding,On change (versioned),Marketing ops,P1,Context only
+GV-03,Locks,designer_locks,Locked elements with rationale,"list{element_id, locked_by, rationale}",Swoosh + product lockup · 'global master',Campaign · per brief,Global,Auto-derived,Per campaign,Designer,P0,Generation constraint
+GV-04,Coverage,context_coverage,"Share of dimensions with context, per market",score 0–1 per market × dimension,JP 3 of 9 → advisory only,Campaign · per brief,Local (per market),Auto-derived,Per campaign,System,P0,Context only
+GV-05,Audit,override_log,Overrides with typed reasons,"list{finding, user, reason, date}",Reason quoted in Ship Report,Performance loop,Global + local override,Auto-derived,Daily during flight,System,P1,Context only
+GV-06,Provenance,source_citation,"Source, owner, version for every input","{source, page, owner, version, updated_at}",Global brand book p.14 · v3.2,Brand · one-time,Global,Auto-derived,On change (versioned),System,P0,Context only
+GV-07,Naming,variant_naming_schema,Naming convention for every variant,pattern,RYC27_DE_metareels_916_C1_v03,Brand · one-time,Global,Brand onboarding,On change (versioned),Marketing ops,P2,Pre-flight check
